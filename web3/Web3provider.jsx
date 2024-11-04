@@ -144,8 +144,26 @@ export const Web3Provider = ({ children }) => {
     }
   };
 
+  const finalMint = async () => {
+    try {
+      await nftContract.methods.finalMint().send({
+        from: walletAddress,
+        gas: 700000,
+      })
+        .once('error', (err) => {
+          console.log(err);
+        })
+        .once('receipt', async () => {
+          const balance = await nftContract.methods.balanceOf(walletAddress, 18).call();
+          console.log(balance);
+        });
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return (
-    <Web3Context.Provider value={{ Chain, walletAddress, factoryContract, nftContract, web3, requestAccount }}>
+    <Web3Context.Provider value={{ Chain, walletAddress, factoryContract, nftContract, web3, requestAccount, finalMint }}>
       {children}
     </Web3Context.Provider>
   );

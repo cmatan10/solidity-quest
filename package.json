@@ -2,6 +2,8 @@
   "name": "solidity-quest",
   "version": "0.1.0",
   "private": false,
+  "author": "Matan Cohen",
+
   "scripts": {
     "dev": "next dev",
     "build": "next build",
