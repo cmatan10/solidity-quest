@@ -87,9 +87,10 @@ export const GAMES = [
 ];
 
 export const startingFeatures = [
-  'We support the testnets eth-sepolia polygon-amoy zkSync-sepolia.',
-  'Enter the world by reading basmalah to be safe',
-  'choose the game, create a new instance of the contract and start to play!.',
+  'We support testnets including Ethereum Sepolia, Polygon Amoy, and zkSync Sepolia.',
+  'Fund your wallet easily through the available faucets.',
+  'Select a game, create a new instance, and jump into the action!',
+  'Collect all required badges to become eligible for minting a final certificate!',
 ];
 
 export const newFeatures = [
@@ -100,7 +101,7 @@ export const newFeatures = [
         'Enhance your solidity skills by solving fun challenges, Come explore, experiment and excel.',
   },
   {
-    imgUrl: '/vrpano.svg',
+    imgUrl: '/iconSol.png',
     title: 'Get Certificate',
     subtitle:
         'Each step solution awards a badge. Gather all required badges, and you can mint a final certificate!',
