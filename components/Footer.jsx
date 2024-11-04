@@ -39,8 +39,8 @@ const Footer = () => {
             className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
           >
             <img
-              src="/headset.svg"
-              alt="headset"
+              src="/vrpano.svg"
+              alt="vrpano"
               className="w-[24px] h-[24px] object-contain"
             />
             <span className="font-normal text-[16px] text-white">
