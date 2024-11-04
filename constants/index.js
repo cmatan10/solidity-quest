@@ -87,9 +87,9 @@ export const GAMES = [
 ];
 
 export const startingFeatures = [
-  'create a new instance of the contract and start to play.',
+  'We support the testnets eth-sepolia polygon-amoy zkSync-sepolia.',
   'Enter the world by reading basmalah to be safe',
-  'No need to beat around the bush, just stay on the gas and have fun',
+  'choose the game, create a new instance of the contract and start to play!.',
 ];
 
 export const newFeatures = [
