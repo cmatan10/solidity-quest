@@ -162,7 +162,8 @@ const Game3 = () => {
               <b><strong> You need:</strong> To solve this puzzle, you need to know how to check Ethereum account balances in Solidity and how to convert balances between Ether and Wei. </b>
             </p>
             <div>
-              <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="button-margin" onClick={createGame}>
+              <br />
+              <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={createGame}>
                 Create Instance
               </Button>
             </div>
@@ -174,7 +175,7 @@ const Game3 = () => {
               <CardBody>
                 <CardTitle className="desc-title title-color"><b>State Variables</b></CardTitle>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="mt-1" onClick={() => correctBalanceChecked()}>
+                  <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={() => correctBalanceChecked()}>
                     correctBalanceChecked
                   </Button>
                   {correctBalanceChecked1 !== null
@@ -185,7 +186,7 @@ const Game3 = () => {
                     )}
                 </div>
                 <br />
-                <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="mt-1" onClick={toggleHint}>
+                <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={toggleHint}>
                   {isHintVisible ? 'Hide Hint' : 'Show Hint'}
                 </Button>
                 {isHintVisible && (
@@ -206,26 +207,28 @@ const Game3 = () => {
               <CardBody>
                 <h3 className="desc-title title-color"><b>Your Test Address:</b></h3>
                 <p style={{ wordBreak: 'break-all' }} className="Instance-color"> {InstanceAddress} </p>
+                <br />
                 <FormGroup>
                   <Input
                     style={{ color: 'black' }}
-                    className="form-control-alternative"
+                    className="form-control-alternative rounded-[12px]"
                     id="input-city"
                     placeholder="_account"
                     type="text"
                     onChange={(e) => setAccount(e.target.value)}
                   />
-                  <br />
+                  <br /><br />
                   <Input
                     style={{ color: 'black' }}
-                    className="form-control-alternative"
+                    className="form-control-alternative rounded-[12px]"
                     id="input-city"
                     placeholder="_amount"
                     type="text"
                     onChange={(e) => setAmount(e.target.value)}
                   />
                 </FormGroup>
-                <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="mt-1" onClick={() => checkBalance(_account, _amount)}>
+                <br />
+                <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={() => checkBalance(_account, _amount)}>
                   checkBalance
                 </Button>
               </CardBody>

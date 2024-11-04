@@ -107,22 +107,20 @@ export const newFeatures = [
         'Each step solution awards a badge. Gather all required badges, and you can mint a final certificate!',
   },
 ];
-
 export const socials = [
   {
-    name: 'twitter',
-    url: '/twitter.svg',
+    name: 'github',
+    iconUrl: '/github.png',
+    link: 'https://github.com/cmatan10/Tocon_Quest',
   },
   {
     name: 'linkedin',
-    url: '/linkedin.svg',
+    iconUrl: '/linkedin.svg',
+    link: 'https://www.linkedin.com/in/matan-cohen-77a2b6247/',
   },
   {
-    name: 'instagram',
-    url: '/instagram.svg',
-  },
-  {
-    name: 'facebook',
-    url: '/facebook.svg',
+    name: 'tocon',
+    iconUrl: '/tocoTocon.jpg',
+    link: 'https://tocon.io/',
   },
 ];

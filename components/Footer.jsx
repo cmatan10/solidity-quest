@@ -39,7 +39,7 @@ const Footer = () => {
             className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
           >
             <img
-              src="/vrpano.svg"
+              src="/certificate.png"
               alt="vrpano"
               className="w-[24px] h-[24px] object-contain"
             />
@@ -60,12 +60,18 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               {socials.map((social) => (
-                <img
+                <a
                   key={social.name}
-                  src={social.url}
-                  alt={social.name}
-                  className="w-[24px] h-[24px] object-contain cursor-pointer"
-                />
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={social.iconUrl}
+                    alt={social.name}
+                    className="w-[24px] h-[24px] object-contain cursor-pointer"
+                  />
+                </a>
               ))}
             </div>
           </div>

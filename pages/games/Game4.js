@@ -128,7 +128,8 @@ const Game4 = () => {
               <b><strong> You need:</strong>  To accomplish this task, you need to understand the receive function in Solidity, its purpose, when it's triggered, and how to interact with it by sending Ether to the contract. </b>
             </p>
             <div>
-              <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="button" onClick={createGame}>
+              <br />
+              <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={createGame}>
                 Create Instance
               </Button>
             </div>
@@ -141,11 +142,12 @@ const Game4 = () => {
             <CardBody>
               <h3 className="desc-title title-color"><b>Your Test Address:</b></h3>
               <p style={{ wordBreak: 'break-all' }} className="Instance-color"> {InstanceAddress} </p>
-              <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="button" onClick={toggleHint}>
+              <br />
+              <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={toggleHint}>
                 {isHintVisible ? 'Hide Hint' : 'Show Hint'}
               </Button>
-              <br />
-              <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="button" onClick={checkPayableGame}>
+              <br /><br />
+              <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={checkPayableGame}>
                 Submit
               </Button>
             </CardBody>

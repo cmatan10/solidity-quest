@@ -152,7 +152,8 @@ const Game2 = () => {
               <b><strong> You need:</strong>  To complete this mission, you need to understand how Solidity's fallback function works, when it's triggered, and how to activate it. </b>
             </p>
             <div>
-              <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="button" onClick={createGame}>
+              <br />
+              <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={createGame}>
                 Create Instance
               </Button>
             </div>
@@ -166,13 +167,13 @@ const Game2 = () => {
               <CardBody>
                 <CardTitle className="desc-title title-color"><b>State Variables & Call Functions</b></CardTitle>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="button" onClick={fixMe}>
+                  <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={fixMe}>
                     fixMe
                   </Button>
                   {isButtonClicked && fixMeState !== null && <p style={{ marginLeft: '10px' }}>{fixMeState.toString()}</p>}
                 </div>
                 <br />
-                <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="button" onClick={toggleHint}>
+                <Button style={{ backgroundColor: '#355f7d', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={toggleHint}>
                   {isHintVisible ? 'Hide Hint' : 'Show Hint'}
                 </Button>
                 {isHintVisible && (
@@ -195,7 +196,8 @@ const Game2 = () => {
               <CardBody>
                 <h3 className="desc-title title-color"><b>Your Test Address:</b></h3>
                 <p style={{ wordBreak: 'break-all' }} className="Instance-color"> {InstanceAddress} </p>
-                <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="button" onClick={checkFallbackGame}>
+                <br />
+                <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={checkFallbackGame}>
                   Submit
                 </Button>
               </CardBody>

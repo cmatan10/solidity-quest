@@ -162,7 +162,8 @@ const Game1 = () => {
               <b><strong> You need:</strong>   To play this game, you need to understand Solidity's bytes data type, specifically bytes2, and how to use it in a contract function.</b>
             </p>
             <div>
-              <Button className="button-margin" onClick={createGame} style={{ backgroundColor: '#c97539', color: 'white' }}>
+              <br />
+              <Button className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={createGame} style={{ backgroundColor: '#c97539', color: 'white' }}>
                 Create Instance
               </Button>
             </div>
@@ -175,7 +176,7 @@ const Game1 = () => {
               <CardBody>
                 <CardTitle className="desc-title title-color"><b>State Variables</b></CardTitle>
                 <div style={{ display: 'flex', alignItems: 'flex-start', minHeight: '50px' }}>
-                  <Button className="mt-1" onClick={() => num()} style={{ backgroundColor: '#355f7d', color: 'white' }}>
+                  <Button className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={() => num()} style={{ backgroundColor: '#355f7d', color: 'white' }}>
                     num
                   </Button>
                   {Num !== '' && <p style={{ marginLeft: '10px' }}>{Num}</p>}
@@ -183,7 +184,7 @@ const Game1 = () => {
                 <br />
                 <div>
                   <Button
-                    className="mt-1"
+                    className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]"
                     onClick={toggleHint}
                     style={{ backgroundColor: '#355f7d', color: 'white' }}
                   >
@@ -213,17 +214,19 @@ const Game1 = () => {
               <CardBody>
                 <h3 className="desc-title title-color"><b>Your Test Address:</b></h3>
                 <p style={{ wordBreak: 'break-all' }} className="Instance-color"> {InstanceAddress} </p>
+                <br />
                 <FormGroup>
                   <Input
                     style={{ color: 'black' }}
-                    className="form-control-alternative"
+                    className="form-control-alternative rounded-[12px]"
                     id="input-city"
                     placeholder="_biggerNum"
                     type="text"
                     onChange={(e) => setBytes2(e.target.value)}
                   />
                 </FormGroup>
-                <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="mt-1" onClick={() => increaseNum(Bytes2)}>
+                <br />
+                <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="flex items-center h-fit py-2 px-4 rounded-[12px] gap-[12px]" onClick={() => increaseNum(Bytes2)}>
                   increaseNum
                 </Button>
               </CardBody>
