@@ -30,9 +30,11 @@ const gameData15 = {
           }`,
   abi: InstanceABI,
   badgeId: 15,
-  hint: `Calculate the function signatures here: https://emn178.github.io/online-tools/keccak_256.html.
-         And XOR values here: https://xor.pw/#. 
-         Alternatively, write a function as follows: function calculateXOR() public pure returns(bytes4);`,
+  hint: `
+         Write a function as follows: function calculateXOR() public pure returns(bytes4);
+         Alternatively, calculate the function signatures and XOR values`,
+  hintLink: 'https://emn178.github.io/online-tools/keccak_256.html',
+  hintLink2: 'https://xor.pw/#',
   functions: [
     {
       label: 'Check Contract Interface',

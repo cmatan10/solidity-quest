@@ -24,8 +24,9 @@ const gameData10 = {
           }`,
   abi: InstanceABI,
   badgeId: 10,
-  hint: `Calculate the function signature at the following link: https://emn178.github.io/online-tools/keccak_256.html
-         or write a function according to the following interface: function Calc() external pure returns (bytes4);`,
+  hint: `Write a function according to the following interface: function Calc() external pure returns (bytes4); 
+         Or calculate the function signature at the following link:`,
+  hintLink: 'https://emn178.github.io/online-tools/keccak_256.html',
   functions: [
     {
       label: 'Answer',

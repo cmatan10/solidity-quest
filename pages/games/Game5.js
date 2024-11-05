@@ -8,7 +8,8 @@ import { timeReset, success } from '../../functions/Game5Functions';
 const gameData5 = {
   id: 5,
   title: 'Timestamp',
-  description: 'Engage with Solidity’s block.timestamp. Understand and ensure perfect synchronization.',
+  description: `Engage with Solidity’s block.timestamp. Understand and ensure perfect synchronization.
+                To complete this puzzle, you need to understand how block.timestamp works in Solidity and how to access it.`,
   code: `// SPDX-License-Identifier: MIT
       pragma solidity 0.8.10;
       
@@ -28,6 +29,8 @@ const gameData5 = {
   abi: InstanceABI,
   badgeId: 5,
   hint: 'You will find the block number in the block explorer by using the hash below. Use the Web3 getBlock function to retrieve timestamp details.',
+  hintLink: 'https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html?highlight=getBlock#getblock',
+
   showTransactionHash: true,
   functions: [
     {

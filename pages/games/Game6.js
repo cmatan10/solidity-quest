@@ -7,7 +7,9 @@ import { complexOperation, gasUsed, gasChecked } from '../../functions/Game6Func
 const gameData6 = {
   id: 6,
   title: 'Gas Checker',
-  description: 'Explore gas consumption in Solidity. Manage gas usage efficiently.',
+  description: `Explore gas consumption in Solidity. Manage gas usage efficiently.
+                To solve this puzzle, you need to understand Ethereum's gas concept, 
+                how to use gasleft() to monitor gas consumption, and how to control and optimize gas usage in Solidity.`,
   code: `// SPDX-License-Identifier: MIT
   pragma solidity ^0.8.10;
 
@@ -29,7 +31,7 @@ const gameData6 = {
   }`,
   abi: InstanceABI,
   badgeId: 6,
-  hint: 'Try to figure out how much gas is required for one iteration to estimate the number of iterations needed.',
+  hint: 'Try to figure out how much gas is required for one iteration, so you can estimate how many iterations the loop will take to consume gas in the range of 3000 to 5000.',
   functions: [
     {
       label: 'Check Gas Used',

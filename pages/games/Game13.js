@@ -31,9 +31,10 @@ const gameData13 = {
           }`,
   abi: InstanceABI,
   badgeId: 13,
-  hint: `Use the decodeparameters function from the web3js library. For more info, check:
-         https://web3js.readthedocs.io/en/v1.7.1/web3-eth-abi.html#decodeparameters.
-         Alternatively, write a function as follows: function decode(bytes memory encodedData) external pure returns (string memory, uint256);`,
+  hint: `Write a function as follows: function decode(bytes memory encodedData) external pure returns (string memory, uint256);
+         Alternatively, Use the decodeparameters function from the web3js library.
+         `,
+  hintLink: 'https://web3js.readthedocs.io/en/v1.7.1/web3-eth-abi.html#decodeparameters',
   functions: [
     {
       label: 'Encoded String and Uint',

@@ -11,7 +11,8 @@ const gameData16 = {
   title: 'Limited Tickets',
   description: `Strategize and bypass ticket limitations in Solidity. Challenge the system and claim rewards.
                 To play this game, you must creatively explore communication with the ticketing contract, 
-                understanding how to potentially bypass a limitation that restricts users to three tickets.`,
+                understanding how to potentially bypass a limitation that restricts users to three tickets. 
+                Familiarity with intermediate contracts could prove valuable.`,
   code: `// SPDX-License-Identifier: MIT
           pragma solidity ^0.8.10;
           

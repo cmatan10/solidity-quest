@@ -8,7 +8,8 @@ import { checkBalance, correctBalanceChecked } from '../../functions/Game3Functi
 const gameData3 = {
   id: 3,
   title: 'Balance Checker',
-  description: 'Verify Ethereum account balances in Solidity...',
+  description: `Perfect the art of balance verification in Solidity. Convert and ensure digital wallet balances align.
+                To solve this puzzle, you need to know how to check Ethereum account balances in Solidity and how to convert balances between Ether and Wei.`,
   code: `// SPDX-License-Identifier: MIT
           pragma solidity ^0.8.10;
 
@@ -21,11 +22,9 @@ const gameData3 = {
               }
           }`,
   abi: InstanceABI,
-  badgeId: 3, // Unique Badge ID for this game
-  hint: `Each hexadecimal digit represents four binary bits, 
-  and a bytes2 consists of sixteen bits. 
-  It requires four hexadecimal digits to represent all possible values. 
-  In hexadecimal notation, values range from 0x0000 to 0xFFFF.`,
+  badgeId: 3,
+  hint: 'Check how to Get the balance of an address at a given block.',
+  hintLink: 'https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html?highlight=balance#getbalance',
   functions: [
     {
       label: 'Get Balance Check Status',

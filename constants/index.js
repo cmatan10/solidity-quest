@@ -98,7 +98,7 @@ export const newFeatures = [
     imgUrl: '/game.png',
     title: 'Play To Learn',
     subtitle:
-        'Enhance your solidity skills by solving fun challenges, Come explore, experiment and excel.',
+        'Enhance your solidity skills by solving fun challenges, Come to explore, experiment and excel.',
   },
   {
     imgUrl: '/iconSol.png',

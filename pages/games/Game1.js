@@ -8,7 +8,8 @@ import { increaseNum, num } from '../../functions/Game1Functions';
 const gameData1 = {
   id: 1,
   title: 'Bytes2',
-  description: 'Explore the bytes2 data type in Solidity...',
+  description: `Traverse the bytes2 data type in Solidity, Share insights and master byte manipulation. 
+                To play this game, you need to understand Solidity's bytes data type, specifically bytes2, and how to use it in a contract function.`,
   code: `// SPDX-License-Identifier: MIT
           pragma solidity ^0.8.10;
 

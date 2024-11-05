@@ -56,7 +56,7 @@ const Explore = () => {
         className={`${styles.innerWidth} mx-auto flex flex-col`}
       >
         <TitleText
-          title={<>Choose the world you want <br className="md:block hidden" /> to explore</>}
+          title={<>Choose the game you want <br className="md:block hidden" /> to explore</>}
           textStyles="text-center"
         />
 

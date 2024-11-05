@@ -26,7 +26,7 @@ const gameData9 = {
           }`,
   abi: InstanceABI,
   badgeId: 9,
-  hint: 'You will find the block number in the block explorer by this hash.',
+  hint: 'You will find the block number in the block explorer by this hash:',
   showTransactionHash: true,
   functions: [
     {

@@ -161,7 +161,13 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
             <p>
               {gameData.hint}
               {gameData.showTransactionHash && transactionHash && (
-              <span> {transactionHash}.</span>
+              <span style={{ wordBreak: 'break-all', color: '#c97539' }}> {transactionHash}.</span>
+              )}
+              {gameData.hintLink && (
+              <span> You can read more <a href={gameData.hintLink} target="_blank" rel="noopener noreferrer" style={{ color: '#c97539' }}>here</a>.</span>
+              )}
+              {gameData.hintLink2 && (
+              <span> and <a href={gameData.hintLink} target="_blank" rel="noopener noreferrer" style={{ color: '#c97539' }}>here</a>.</span>
               )}
             </p>
           </CardBody>

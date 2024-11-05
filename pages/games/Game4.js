@@ -8,7 +8,9 @@ import { checkPayableGame } from '../../functions/Game4Functions';
 const gameData4 = {
   id: 4,
   title: 'Payable Contract',
-  description: 'Dive into the receive function in Solidity. Learn and ensure smooth interactions.',
+  description: `Dive into the receive function in Solidity. Learn and ensure smooth interactions.
+                To accomplish this task, you need to understand the receive function in Solidity, its purpose, when it's triggered, 
+                and how to interact with it by sending Ether to the contract.`,
   code: `// SPDX-License-Identifier: MIT
     pragma solidity ^0.8.10;
     
@@ -20,6 +22,7 @@ const gameData4 = {
   abi: InstanceABI,
   badgeId: 4,
   hint: 'Interact with the contract using Remix. The receive function is triggered by plain Ether transfers without calldata.',
+  hintLink: 'https://docs.soliditylang.org/en/v0.8.10/contracts.html?highlight=fallback#receive-ether-function',
   functions: [
     {
       label: 'Check Payable Game',

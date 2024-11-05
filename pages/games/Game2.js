@@ -8,7 +8,9 @@ import { fixMe, checkFallbackGame } from '../../functions/Game2Functions';
 const gameData2 = {
   id: 2,
   title: 'Fallback',
-  description: 'Delve into Solidity\'s fallback function mechanism...',
+  description: `into Solidity's fallback intricacies. Discover its mechanics and maximize its potential.
+                To complete this mission, you need to understand how Solidity's fallback function works, 
+                when it's triggered, and how to activate it.`,
   code: `// SPDX-License-Identifier: MIT
           pragma solidity ^0.8.10;
 
@@ -24,11 +26,12 @@ const gameData2 = {
               }
           }`,
   abi: InstanceABI,
-  badgeId: 2, // Unique Badge ID for this game
+  badgeId: 2,
   hint: `Each hexadecimal digit represents four binary bits, 
   and a bytes2 consists of sixteen bits. 
   It requires four hexadecimal digits to represent all possible values. 
   In hexadecimal notation, values range from 0x0000 to 0xFFFF.`,
+  hintLink: 'https://docs.soliditylang.org/en/v0.8.10/contracts.html?highlight=fallback#fallback-function',
   functions: [
     {
       label: 'Fix Me',

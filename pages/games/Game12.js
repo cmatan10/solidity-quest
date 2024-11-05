@@ -9,9 +9,9 @@ const gameData12 = {
   id: 12,
   title: 'Hash Collision',
   description: `Challenge Solidity's hash functions. Find collisions and match outputs.
-                To solve this puzzle, you need to understand hash functions in Solidity,
-                specifically keccak256 and sha256, as well as how to use abi.encodePacked.
-                You'll also need to understand the concept of hash collisions.`,
+                To solve this puzzle, you need to understand hash functions in Solidity, 
+                specifically keccak256 and sha256, as well as how to use the abi.encodePacked function. 
+                You'll also need to understand the concept of hash collisions, where different inputs produce the same hashed output.`,
   code: `// SPDX-License-Identifier: MIT
           pragma solidity ^0.8.10;
           

@@ -8,10 +8,9 @@ import { add, counter, overflowOccurred } from '../../functions/Game8Functions';
 const gameData8 = {
   id: 8,
   title: 'Overflow',
-  description: `Take on the overflow challenge in Solidity. Navigate and master numeric manipulations. 
-                You need to understand the concept of integer overflow and underflow, 
-                how the 'unchecked' keyword works in Solidity ^0.8.0, 
-                and how to induce an overflow situation.`,
+  description: `Take on the overflow challenge in Solidity. Navigate and master numeric manipulations.
+                To solve this puzzle, you need to understand the concept of integer overflow and underflow, 
+                how the 'unchecked' keyword works in Solidity ^0.8.0, and how to induce an overflow situation.`,
   code: `// SPDX-License-Identifier: MIT
           pragma solidity ^0.8.10;
           
@@ -31,6 +30,7 @@ const gameData8 = {
   abi: InstanceABI,
   badgeId: 8,
   hint: 'Refer to Solidity documentation on integer overflow handling in version ^0.8.0.',
+  hintLink: 'https://docs.soliditylang.org/en/latest/080-breaking-changes.html#silent-changes-of-the-semantics',
   functions: [
     {
       label: 'Counter Value',

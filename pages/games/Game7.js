@@ -8,7 +8,9 @@ import { changePassword, previousPassword } from '../../functions/Game7Functions
 const gameData7 = {
   id: 7,
   title: 'Change Password',
-  description: 'Explore Solidity\'s private state variables. Discover and master state variable intricacies.',
+  description: `Dive into Solidity's 'private' state variables. Discover and master state variable intricacies.  
+                To complete this mission, you need to understand Solidity's state variable visibility, 
+                especially private variables, and how to potentially expose or access these 'hidden' variables.`,
   code: `// SPDX-License-Identifier: MIT
   pragma solidity ^0.8.10;
 
@@ -31,6 +33,8 @@ const gameData7 = {
   abi: InstanceABI,
   badgeId: 7,
   hint: 'Understand how Solidity’s private variables are stored and accessed.',
+  hintLink: 'https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html?highlight=getStorageAt#getstorageat',
+
   functions: [
     {
       label: 'Previous Password',
@@ -231,7 +235,7 @@ export default Game7;
 //             <CardTitle className="desc-title title-color"><b>Game Description</b></CardTitle>
 //             <p><b>Dive into Solidity's 'private' state variables. Discover and master state variable intricacies.</b>
 //               <br /><br />
-//               <b><strong> You need:</strong>  To complete this mission, you need to understand Solidity's state variable visibility, especially private variables, and how to potentially expose or access these 'hidden' variables. </b>
+//               <b><strong> You need:</strong>Dive into Solidity's 'private' state variables. Discover and master state variable intricacies.  To complete this mission, you need to understand Solidity's state variable visibility, especially private variables, and how to potentially expose or access these 'hidden' variables. </b>
 //             </p>
 //             <div>
 //               <Button style={{ backgroundColor: '#c97539', color: 'white' }} className="button-margin" onClick={createGame}>
