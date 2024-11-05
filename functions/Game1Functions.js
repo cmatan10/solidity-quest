@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 
-export const increaseNum = async (toast, instanceContract, walletAddress, nftContract, badgeId, inputValues) => {
+export const increaseNum = async (toast, instanceContract, inputValues, walletAddress, nftContract, badgeId) => {
   console.log('instanceContract', instanceContract, 'inputValues', inputValues, 'walletAddress', walletAddress, 'nftContract', nftContract, 'badgeId', badgeId);
 
   try {

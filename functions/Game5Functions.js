@@ -2,7 +2,7 @@
 // src/functions/Game5Functions.js
 /* eslint-disable no-underscore-dangle */
 
-export const timeReset = async (toast, instanceContract, walletAddress, nftContract, badgeId, inputValues) => {
+export const timeReset = async (toast, instanceContract, inputValues, walletAddress, nftContract, badgeId) => {
   const { _Timestamp } = inputValues;
 
   if (isNaN(_Timestamp)) {

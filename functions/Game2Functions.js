@@ -11,7 +11,7 @@ export const fixMe = async (toast, instanceContract) => {
   }
 };
 
-export const checkFallbackGame = async (toast, instanceContract, walletAddress, nftContract, badgeId) => {
+export const checkFallbackGame = async (toast, instanceContract, inputValues, walletAddress, nftContract, badgeId) => {
   try {
     const fixMeValue = await instanceContract.methods.fixMe().call();
     console.log('fixMeValue:', fixMeValue);

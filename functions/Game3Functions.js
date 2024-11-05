@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 // src/functions/Game3Functions.js
 
-export const checkBalance = async (toast, instanceContract, walletAddress, nftContract, badgeId, inputValues, web3) => {
+export const checkBalance = async (toast, instanceContract, inputValues, walletAddress, nftContract, badgeId, web3) => {
   const { _account, _amount } = inputValues;
 
   if (!web3.utils.isAddress(_account)) {

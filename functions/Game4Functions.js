@@ -1,7 +1,7 @@
 // src/functions/Game4Functions.js
 /* eslint-disable no-underscore-dangle */
 
-export const checkPayableGame = async (toast, instanceContract, walletAddress, nftContract, badgeId, inputValues, web3) => {
+export const checkPayableGame = async (toast, instanceContract, inputValues, walletAddress, nftContract, badgeId, web3) => {
   try {
     const bal = await web3.eth.getBalance(instanceContract.options.address);
     if (bal === '1') {

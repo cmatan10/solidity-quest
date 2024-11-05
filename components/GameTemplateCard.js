@@ -14,9 +14,11 @@ import { Web3Context } from '../web3/Web3provider';
 const GameTemplateCard = ({ gameData, gameFunctions }) => {
   const [inputValues, setInputValues] = useState({});
   const [InstanceAddress, setInstanceAddress] = useState('');
+  const [InstanceAddress2, setInstanceAddress2] = useState('');
   const [TokenBalance, setTokenBalance] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [instanceContract, setInstanceContract] = useState(null);
+  const [instanceContract2, setInstanceContract2] = useState(null);
   const [isHintVisible, setIsHintVisible] = useState(false);
   const [transactionHash, setTransactionHash] = useState(null);
   const codeRef = useRef(null);
@@ -29,7 +31,10 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
     if (web3 && web3.utils.isAddress(InstanceAddress)) {
       setInstanceContract(new web3.eth.Contract(gameData.abi, InstanceAddress));
     }
-  }, [InstanceAddress, web3, gameData.abi]);
+    if (web3 && gameData.abi2 && web3.utils.isAddress(InstanceAddress2)) {
+      setInstanceContract2(new web3.eth.Contract(gameData.abi2, InstanceAddress2));
+    }
+  }, [InstanceAddress, InstanceAddress2, web3, gameData.abi, gameData.abi2]);
 
   useEffect(() => {
     const fetchTokenBalance = async () => {
@@ -50,12 +55,19 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
       setIsLoading(true);
       const receipt = await factoryContract.methods.deploy(gameData.id).send({ from: walletAddress });
       const deployInstanceEvent = receipt.events.DeployInstance;
+
       if (deployInstanceEvent) {
-        setInstanceAddress(deployInstanceEvent.returnValues.Instance);
+        setInstanceAddress(web3.utils.toChecksumAddress(`0x${receipt.logs[0].topics[1].slice(-40)}`));
+
+        // Check if there's a second contract to deploy
+        if (gameData.abi2 && receipt.logs[1]) {
+          setInstanceAddress2(web3.utils.toChecksumAddress(`0x${receipt.logs[1].topics[1].slice(-40)}`));
+        }
+
         if (gameData.showTransactionHash) {
           setTransactionHash(receipt.transactionHash);
         }
-        toast.success('Game instance created successfully!');
+        toast.success('Game instance(s) created successfully!');
       } else {
         toast.error('Game creation failed.');
       }
@@ -68,7 +80,7 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
   };
 
   const handleFunctionExecution = (funcName, func) => {
-    func(toast, instanceContract, walletAddress, nftContract, gameData.badgeId, inputValues, web3);
+    func(toast, instanceContract, inputValues, walletAddress, nftContract, gameData.badgeId, web3, instanceContract2);
   };
 
   return (
@@ -92,6 +104,20 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
           </div>
         </CardBody>
       </Card>
+      {gameData.code1 && (
+        <Card className="game-card" style={{ backgroundColor: '#000000', color: 'white', marginBottom: '20px' }}>
+          <CardBody>
+            <div>
+              <CopyToClipboard text={gameData.code1}>
+                <Button className="button-copy">Copy code</Button>
+              </CopyToClipboard>
+              <SyntaxHighlighter style={vscDarkPlus} ref={codeRef} customStyle={{ margin: '0' }}>
+                {gameData.code1}
+              </SyntaxHighlighter>
+            </div>
+          </CardBody>
+        </Card>
+      )}
 
       {/* Game Description and Create Instance Button */}
       <Card className="game-card" style={{ backgroundColor: '#000000', color: 'white', marginBottom: '20px' }}>
@@ -106,18 +132,26 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
       </Card>
 
       {/* Display Instance Address */}
-      {InstanceAddress && (
-        <Card className="game-card" style={{ backgroundColor: '#000000', color: 'white', marginBottom: '20px' }}>
-          <CardBody>
-            <h3 className="desc-title title-color"><b>Your Instance Address:</b></h3>
-            <p style={{ wordBreak: 'break-all', color: '#c97539' }}>{InstanceAddress}</p>
-          </CardBody>
-        </Card>
+      {InstanceAddress && !isLoading && (
+      <Card className="game-card" style={{ backgroundColor: '#000000', color: 'white', marginBottom: '20px' }}>
+        <CardBody>
+          <h3 className="desc-title title-color"><b>Your Instance Address:</b></h3>
+          <p style={{ wordBreak: 'break-all', color: '#c97539' }}>{InstanceAddress}</p>
+          {instanceContract2 && (
+            <><h3 className="desc-title title-color"><b>Your Hacking Instance Address:</b></h3><p style={{ wordBreak: 'break-all', color: '#c97539' }}>{InstanceAddress2}</p></>
+          )}
+        </CardBody>
+      </Card>
       )}
 
-      {gameData.hint && (
+      {/* Game Hint */}
+      {InstanceAddress && !isLoading && gameData.hint && (
       <>
-        <Button onClick={toggleHint} className="flex h-fit py-2 px-4 bg-[#25618B] rounded-[12px] gap-[6px]" style={{ backgroundColor: '#355f7d', color: 'white', marginBottom: '17px', marginLeft: '12px' }}>
+        <Button
+          onClick={toggleHint}
+          className="flex h-fit py-2 px-4 bg-[#25618B] rounded-[12px] gap-[6px]"
+          style={{ backgroundColor: '#355f7d', color: 'white', marginBottom: '17px', marginLeft: '12px' }}
+        >
           {isHintVisible ? 'Hide Hint' : 'Show Hint'}
         </Button>
         {isHintVisible && (
@@ -126,7 +160,6 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
             <CardTitle className="desc-title title-color"><b>Hint</b></CardTitle>
             <p>
               {gameData.hint}
-              {/* Conditionally display transaction hash if showTransactionHash is true */}
               {gameData.showTransactionHash && transactionHash && (
               <span> {transactionHash}.</span>
               )}
@@ -138,35 +171,30 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
       )}
 
       {/* Game Functions */}
-      {InstanceAddress && (
-        <>
-          {gameData.functions.map((func, index) => (
-            <Card key={index} className="game-card" style={{ backgroundColor: '#000000', color: 'white', marginBottom: '20px' }}>
-              <CardBody>
-                <CardTitle className="desc-title title-color"><b>{func.label}</b></CardTitle>
-                {func.inputs.map((input, idx) => (
-                  <><FormGroup key={idx}>
-                    <Input
-                      className="py-1 rounded-[12px]"
-                      style={{ color: 'black' }}
-                      placeholder={input.placeholder}
-                      onChange={(event) => handleInputChange(event, input.name)}
-                    />
-                  </FormGroup><br />
-                  </>
-                ))}
-                <Button
-                  className="flex h-fit py-2 px-4 bg-[#25618B] rounded-[12px] gap-[6px]"
-                  style={{ backgroundColor: '#355f7d', color: 'white' }}
-                  onClick={() => handleFunctionExecution(func.functionName, gameFunctions[func.functionName])}
-                >
-                  {func.buttonText}
-                </Button>
-              </CardBody>
-            </Card>
-          ))}
-        </>
-      )}
+      {InstanceAddress && !isLoading && gameData.functions.map((func, index) => (
+        <Card key={index} className="game-card" style={{ backgroundColor: '#000000', color: 'white', marginBottom: '20px' }}>
+          <CardBody>
+            <CardTitle className="desc-title title-color"><b>{func.label}</b></CardTitle>
+            {func.inputs.map((input, idx) => (
+              <><FormGroup key={idx}>
+                <Input
+                  className="py-1 rounded-[12px]"
+                  style={{ color: 'black' }}
+                  placeholder={input.placeholder}
+                  onChange={(event) => handleInputChange(event, input.name)}
+                />
+              </FormGroup><br /></>
+            ))}
+            <Button
+              className="flex h-fit py-2 px-4 bg-[#25618B] rounded-[12px] gap-[6px]"
+              style={{ backgroundColor: '#355f7d', color: 'white' }}
+              onClick={() => handleFunctionExecution(func.functionName, gameFunctions[func.functionName])}
+            >
+              {func.buttonText}
+            </Button>
+          </CardBody>
+        </Card>
+      ))}
 
       {/* Badge Display */}
       {TokenBalance > 0 && (

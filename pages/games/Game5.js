@@ -28,7 +28,7 @@ const gameData5 = {
   abi: InstanceABI,
   badgeId: 5,
   hint: 'You will find the block number in the block explorer by using the hash below. Use the Web3 getBlock function to retrieve timestamp details.',
-  showTransactionHash: true, // Flag to show the transaction hash in the hint
+  showTransactionHash: true,
   functions: [
     {
       label: 'Check Success',
