@@ -2,10 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
 import styles from '../styles';
 import { fadeIn } from '../utils/motion';
+import { Web3Context } from '../web3/Web3provider';
 
 const ExploreCard = ({ id, imgUrl, title, index, active, handleClick }) => {
+  const { tokenIDs } = useContext(Web3Context);
   const router = useRouter();
 
   const handleCardClick = () => {
@@ -16,14 +19,19 @@ const ExploreCard = ({ id, imgUrl, title, index, active, handleClick }) => {
     }
   };
 
+  const numericId = parseInt(id.replace('game-', ''), 10);
+  const isSolved = tokenIDs.includes(numericId);
+
   return (
     <motion.div
       variants={fadeIn('right', 'spring', index * 0.25, 2.75)}
       className={`relative ${
         active === id
-          ? 'h-[360px] rounded-[12px]' // Ensure active card has rounded corners
-          : 'h-[220px] sm:h-[320px] rounded-[12px]' // Add rounded corners to inactive cards as well
-      } flex items-center justify-center transition-[flex] duration-[0.5s] ease-out cursor-pointer m-3`}
+          ? 'h-[360px] rounded-[12px]'
+          : 'h-[220px] sm:h-[320px] rounded-[12px]'
+      } flex items-center justify-center transition-[flex] duration-[0.5s] ease-out cursor-pointer m-3 ${
+        isSolved ? 'glow' : ''
+      }`}
       onClick={handleCardClick}
     >
       <img
@@ -38,13 +46,9 @@ const ExploreCard = ({ id, imgUrl, title, index, active, handleClick }) => {
           </h2>
         </div>
       ) : (
-        <div className="absolute bottom-0 p-4 flex justify-start w-full flex-col bg-[rgba(0,0,0,0.5)] rounded-[12px]"> {/* Changed rounded-[32px] to rounded-[12px] */}
+        <div className="absolute bottom-0 p-4 flex justify-start w-full flex-col bg-[rgba(0,0,0,0.5)] rounded-[12px]">
           <div className={`${styles.flexCenter} w-[50px] h-[50px] rounded-[12px] glassmorphism mb-[8px]`}>
-            <img
-              src="/game.png"
-              alt="headset"
-              className="object-contain"
-            />
+            <img src="/game.png" alt="headset" className="object-contain" />
           </div>
           <p className="font-normal text-[14px] leading-[16px] text-white uppercase">
             Play Now!
@@ -52,6 +56,11 @@ const ExploreCard = ({ id, imgUrl, title, index, active, handleClick }) => {
           <h2 className="mt-[12px] font-semibold sm:text-[16px] text-[18px] text-white whitespace-nowrap">
             {title}
           </h2>
+          {isSolved && (
+            <span className="text-green-500 font-semibold text-[14px]">
+              Solved
+            </span>
+          )}
         </div>
       )}
     </motion.div>

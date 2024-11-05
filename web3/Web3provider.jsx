@@ -1,3 +1,7 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-use-before-define */
 import { createContext, useState, useEffect } from 'react';
 import Web3 from 'web3';
 import gameABI from '../interfaces/GameFactory.json';
@@ -11,6 +15,7 @@ export const Web3Provider = ({ children }) => {
   const [factoryContract, setFactoryContract] = useState(null);
   const [nftContract, setNftContract] = useState(null);
   const [web3, setWeb3] = useState(null);
+  const [tokenIDs, setTokenIDs] = useState([]);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
@@ -45,6 +50,31 @@ export const Web3Provider = ({ children }) => {
         console.error('Switch Chain Error:', switchError);
       }
     }
+  };
+
+  useEffect(() => {
+    if (nftContract) {
+      updateAchievements(walletAddress);
+    }
+  }, [nftContract, walletAddress]);
+
+  const updateAchievements = async (walletAddress) => {
+    if (!nftContract) {
+      console.error('nftContract is null');
+      return;
+    }
+    const tempTokenIDs = [];
+    for (let index = 1; index <= 17; index++) {
+      try {
+        const balance = await nftContract.methods.balanceOf(walletAddress, index).call();
+        if (balance > 0) {
+          tempTokenIDs.push(index);
+        }
+      } catch (e) {
+        console.error(`Failed to fetch balance for token ${index} on network ${Chain}. Error: ${e.message}`);
+      }
+    }
+    return setTokenIDs(tempTokenIDs);
   };
 
   useEffect(() => {
@@ -163,7 +193,7 @@ export const Web3Provider = ({ children }) => {
   };
 
   return (
-    <Web3Context.Provider value={{ Chain, walletAddress, factoryContract, nftContract, web3, requestAccount, finalMint }}>
+    <Web3Context.Provider value={{ Chain, walletAddress, factoryContract, nftContract, web3, tokenIDs, requestAccount, finalMint }}>
       {children}
     </Web3Context.Provider>
   );

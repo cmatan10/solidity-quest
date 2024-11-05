@@ -108,3 +108,7 @@
 .small-title {
   font-size: 0.85rem; /* Adjust this value as needed */
 }
+.glow {
+  box-shadow: 0 0 10px 6px rgba(111, 228, 230, 0.6); /* Green glow */
+  transition: box-shadow 0.s ease-in-out;
+}

@@ -1,7 +1,9 @@
+/* eslint-disable no-undef */
+
 'use client';
 
 import { motion } from 'framer-motion';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { socials } from '../constants';
 import { Web3Context } from '../web3/Web3provider';
 
@@ -9,7 +11,26 @@ import styles from '../styles';
 import { footerVariants } from '../utils/motion';
 
 const Footer = () => {
-  const { finalMint } = useContext(Web3Context);
+  const { finalMint, walletAddress, nftContract } = useContext(Web3Context);
+  const [isGameCompleted, setIsGameCompleted] = useState(false); // State to track if game is completed
+
+  useEffect(() => {
+    const checkBalance = async () => {
+      if (nftContract && walletAddress) {
+        try {
+          const balance = await nftContract.methods.balanceOf(walletAddress, 18).call();
+          if (balance > 0) {
+            console.log('You finished the game');
+            setIsGameCompleted(true); // Set game as completed if balance > 0
+          }
+        } catch (error) {
+          console.error('Error fetching balance:', error);
+        }
+      }
+    };
+
+    checkBalance();
+  }, [nftContract, walletAddress]);
 
   const handleFinalMint = async () => {
     try {
@@ -31,22 +52,24 @@ const Footer = () => {
       <div className={`${styles.innerWidth} mx-auto flex flex-col gap-8`}>
         <div className="flex items-center justify-between flex-wrap gap-5">
           <h4 className="font-bold md:text-[64px] text-[44px] text-white">
-            Claim Final Certificate
+            {isGameCompleted ? 'You got a certificate' : 'Claim Final Certificate'}
           </h4>
-          <button
-            type="button"
-            onClick={handleFinalMint} // Add onClick handler
-            className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
-          >
-            <img
-              src="/certificate.png"
-              alt="vrpano"
-              className="w-[24px] h-[24px] object-contain"
-            />
-            <span className="font-normal text-[16px] text-white">
-              Claim
-            </span>
-          </button>
+          {!isGameCompleted && ( // Conditionally render the button if the game is not completed
+            <button
+              type="button"
+              onClick={handleFinalMint} // Add onClick handler
+              className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
+            >
+              <img
+                src="/certificate.png"
+                alt="certificate"
+                className="w-[24px] h-[24px] object-contain"
+              />
+              <span className="font-normal text-[16px] text-white">
+                Claim
+              </span>
+            </button>
+          )}
         </div>
 
         <div className="flex flex-col">
