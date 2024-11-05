@@ -7,6 +7,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
+import { Navbar } from '.';
 import 'react-toastify/dist/ReactToastify.css';
 import { Web3Context } from '../web3/Web3provider';
 
@@ -71,7 +72,8 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
   };
 
   return (
-    <Container className="bg-primary-black overflow-hidden" style={{ paddingBottom: '30px', minHeight: '100vh', paddingTop: '60px' }}>
+    <Container className="bg-primary-black overflow-hidden" style={{ paddingBottom: '30px', minHeight: '100vh' }}>
+      <Navbar />
       <ToastContainer />
       <h1 className="game-title title-color" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
         <b>{gameData.title}</b>
@@ -168,7 +170,7 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
 
       {/* Badge Display */}
       {TokenBalance > 0 && (
-        <div style={{ textAlign: 'center', color: 'gold', marginTop: '20px' }}>
+        <div style={{ textAlign: 'center', color: '#c97539', marginTop: '20px' }}>
           <strong>Congratulations! You Got A Badge <i className="fas fa-medal" style={{ fontSize: '20px' }} /></strong>
         </div>
       )}
