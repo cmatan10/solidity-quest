@@ -24,11 +24,11 @@ export const Web3Provider = ({ children }) => {
     },
     80002: { // Amoy network
       gameAddress: '0x41Ba2b107DF51e61519b7b975a25bC4DF7eD5D06',
-      nftAddress: '0xdcc35Acb1E9947441010780f83d2b94Df622aC48',
+      nftAddress: '0xf55754207c6d8Ed08fD0C5be3D00a4B581718A6a',
     },
     11155111: { // Sepolia network
       gameAddress: '0x0f5841D53526aBdF15ef77c790aCd7839D86D9d0',
-      nftAddress: '0x82FE6A93BA6EC6859e44aB30A7d7ff843e3e60ba',
+      nftAddress: '0xAe9fe09DaCf5b5408f872452Fe9de3B4804447c3',
     },
   };
 
