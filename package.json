@@ -32,6 +32,7 @@
     "reactstrap": "^9.2.3",
     "redux": "^5.0.1",
     "slick-carousel": "^1.8.1",
+    "wagmi": "^2.12.26",
     "web3": "^4.14.0"
   },
   "devDependencies": {
