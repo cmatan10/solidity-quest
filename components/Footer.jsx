@@ -6,6 +6,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { Web3Context } from '../web3/Web3provider';
 import styles from '../styles';
 import { footerVariants } from '../utils/motion';
+import { socials } from '../constants';
 
 const Footer = () => {
   const { finalMint, walletAddress, nftContract, tokenIDs } = useContext(Web3Context);
@@ -93,6 +94,22 @@ const Footer = () => {
             <p className="font-normal text-[14px] text-white opacity-50">
               Copyright © 2021 - 2022 Matan Cohen. All rights reserved.
             </p>
+            <div className="flex gap-4">
+              {socials.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={social.iconUrl}
+                    alt={social.name}
+                    className="w-[24px] h-[24px] object-contain cursor-pointer"
+                  />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
