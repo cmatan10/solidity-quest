@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": false,
   "author": "Matan Cohen",
-
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,6 +11,9 @@
     "export": "npm run build && next export -o _static"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.6",
     "@reduxjs/toolkit": "^2.3.0",
     "eslint-config-next": "13.0.3",
     "framer-motion": "^7.6.7",

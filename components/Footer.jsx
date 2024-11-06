@@ -4,9 +4,9 @@
 
 import { motion } from 'framer-motion';
 import { useContext, useEffect, useState } from 'react';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { socials } from '../constants';
 import { Web3Context } from '../web3/Web3provider';
-
 import styles from '../styles';
 import { footerVariants } from '../utils/motion';
 
@@ -51,9 +51,18 @@ const Footer = () => {
       <div className="footer-gradient" />
       <div className={`${styles.innerWidth} mx-auto flex flex-col gap-8`}>
         <div className="flex items-center justify-between flex-wrap gap-5">
-          <h4 className="font-bold md:text-[64px] text-[44px] text-white">
-            {isGameCompleted ? 'You got a certificate' : 'Claim Final Certificate'}
+
+          <h4 className="font-bold md:text-[64px] text-[44px] text-white flex items-center justify-center text-center mx-auto">
+            {isGameCompleted ? (
+              <>
+                You got a certificate
+                <EmojiEventsIcon className="ml-2" style={{ fontSize: '64px' }} /> {/* Larger icon size */}
+              </>
+            ) : (
+              'Claim Final Certificate'
+            )}
           </h4>
+
           {!isGameCompleted && ( // Conditionally render the button if the game is not completed
             <button
               type="button"
