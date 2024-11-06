@@ -167,7 +167,7 @@ const GameTemplateCard = ({ gameData, gameFunctions }) => {
               <span> You can read more <a href={gameData.hintLink} target="_blank" rel="noopener noreferrer" style={{ color: '#c97539' }}>here</a>.</span>
               )}
               {gameData.hintLink2 && (
-              <span> and <a href={gameData.hintLink} target="_blank" rel="noopener noreferrer" style={{ color: '#c97539' }}>here</a>.</span>
+              <span> and <a href={gameData.hintLink2} target="_blank" rel="noopener noreferrer" style={{ color: '#c97539' }}>here</a>.</span>
               )}
             </p>
           </CardBody>

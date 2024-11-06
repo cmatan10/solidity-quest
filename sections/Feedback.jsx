@@ -36,7 +36,7 @@ const Feedback = () => (
         className="relative flex-1 flex justify-center items-center"
       >
         <img
-          src="/planet-09.jpeg"
+          src="/about-img.webp"
           alt="planet-09"
           className="w-full lg:h-[540px] h-auto min-h-[210px] object-cover rounded-[40px]"
         />

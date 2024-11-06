@@ -33,7 +33,7 @@ export const Web3Provider = ({ children }) => {
     },
     11155111: { // Sepolia network
       gameAddress: '0x0f5841D53526aBdF15ef77c790aCd7839D86D9d0',
-      nftAddress: '0xAe9fe09DaCf5b5408f872452Fe9de3B4804447c3',
+      nftAddress: '0x1D5916eF2922d6783aF201A25af034d5024fA2f0',
     },
   };
 

@@ -6,7 +6,7 @@ import { Web3Provider } from '../web3/Web3provider';
 const MyApp = ({ Component, pageProps }) => (
   <Web3Provider>
     <Head>
-      <title>Metaversus</title>
+      <title>Solidity Quest</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
       <link rel="preconnect" href="https://stijndv.com" />
