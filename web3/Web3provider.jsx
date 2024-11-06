@@ -17,6 +17,7 @@ export const Web3Provider = ({ children }) => {
   const [nftContract, setNftContract] = useState(null);
   const [web3, setWeb3] = useState(null);
   const [tokenIDs, setTokenIDs] = useState([]);
+  let walletConnectProvider;
 
   useEffect(() => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
@@ -156,43 +157,57 @@ export const Web3Provider = ({ children }) => {
   const requestAccount = async () => {
     console.log('Requesting account...');
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    let provider;
-
+  
     if (isMobile) {
-      // Use WalletConnect provider for mobile
-      provider = new WalletConnectProvider({
-        rpc: {
-          11155111: 'https://zksync-sepolia.g.alchemy.com/v2/FdP4lSDr9rWv0rpT9qflxHA7KyBDoEDZ', // Sepolia testnet
-        },
-      });
-
-      // Enable WalletConnect provider
-      await provider.enable();
+      if (!walletConnectProvider || !walletConnectProvider.connected) {
+        // Initialize WalletConnect provider with persistent session
+        walletConnectProvider = new WalletConnectProvider({
+          rpc: {
+            80002: 'https://rpc-mumbai.maticvigil.com',
+            1440002: 'https://rpc-for-chain-1440002',
+            11155111: 'https://zksync-sepolia.g.alchemy.com/v2/FdP4lSDr9rWv0rpT9qflxHA7KyBDoEDZ', // Sepolia testnet
+          },
+          qrcodeModalOptions: {
+            mobileLinks: ["metamask"],
+          },
+        });
+  
+        // Enable session with WalletConnect
+        await walletConnectProvider.enable();
+  
+        walletConnectProvider.on("disconnect", () => {
+          console.log("WalletConnect session disconnected");
+        });
+      }
+  
+      const web3 = new Web3(walletConnectProvider);
+  
+      try {
+        const accounts = await web3.eth.getAccounts();
+        setWalletAddress(accounts[0]);
+      } catch (error) {
+        console.log('Error connecting account:', error);
+      }
     } else if (window.ethereum) {
       // Use MetaMask or any injected provider on desktop
-      provider = window.ethereum;
-
       const chainId = parseInt(window.ethereum.chainId, 16);
       setChain(chainId);
       console.log(chainId);
-
-      // Switch chain if not on a desired network
+  
       if (chainId !== 80002 && chainId !== 1440002 && chainId !== 11155111) {
         await switchChain();
       }
+  
+      try {
+        const accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        setWalletAddress(accounts[0]);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       console.log('No Ethereum provider found');
-      return;
-    }
-
-    const web3 = new Web3(provider);
-
-    try {
-      const accounts = await web3.eth.getAccounts();
-      setWalletAddress(accounts[0]);
-    } catch (error) {
-      console.log('Error connecting account:', error);
     }
   };
 
