@@ -8,7 +8,7 @@ const Page = () => (
     sdkOptions={{
       dappMetadata: {
         name: 'Example React Dapp',
-        url: window.location.href,
+        url: 'https://metamask.app.link/dapp/solidity-quest.vercel.app/',
       },
       infuraAPIKey: 'https://zksync-sepolia.g.alchemy.com/v2/FdP4lSDr9rWv0rpT9qflxHA7KyBDoEDZ',
     }}
