@@ -12,7 +12,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Explore = () => {
-  const [active, setActive] = useState(''); // Initialize active state as empty
+  const [active, setActive] = useState('game-1'); // Initialize active state as empty
 
   // Settings for the slider
   const settings = {
