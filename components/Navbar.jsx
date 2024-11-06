@@ -43,8 +43,6 @@ const Navbar = () => {
             </h2>
           </Link>
           <div className="flex items-center">
-            <div className="absolute w-[25%] inset-0 gradient-01 z-[-100]" />
-
             <button
               onClick={requestAccount}
               className="bg-blue-500 text-white px-4 py-2 rounded-md"
