@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { MetaMaskProvider } from '@metamask/sdk-react';
 import { Web3Context } from '../web3/Web3provider';
 import styles from '../styles';
 import { navVariants } from '../utils/motion';
@@ -43,13 +44,24 @@ const Navbar = () => {
             </h2>
           </Link>
           <div className="flex items-center">
-            <button
-              onClick={requestAccount}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
-              disabled={!requestAccount}
+            <MetaMaskProvider
+              debug={false}
+              sdkOptions={{
+                dappMetadata: {
+                  name: 'Example React Dapp',
+                  url: 'https://metamask.app.link/dapp/solidity-quest.vercel.app/',
+                },
+                infuraAPIKey: 'https://zksync-sepolia.g.alchemy.com/v2/FdP4lSDr9rWv0rpT9qflxHA7KyBDoEDZ',
+              }}
             >
-              {walletAddress ? 'Connected' : 'Connect Wallet'}
-            </button>
+              <button
+                onClick={requestAccount}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                disabled={!requestAccount}
+              >
+                {walletAddress ? 'Connected' : 'Connect Wallet'}
+              </button>
+            </MetaMaskProvider>
             <img
               src="/menu.svg"
               alt="menu"
