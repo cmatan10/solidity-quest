@@ -56,8 +56,8 @@ const Footer = () => {
       <ToastContainer />
       <div className="footer-gradient" />
       <div className={`${styles.innerWidth} mx-auto flex flex-col gap-8`}>
-        <div className="flex items-center justify-between flex-wrap gap-5">
-          <h4 className="font-bold md:text-[64px] text-[44px] text-white flex items-center justify-center text-center mx-auto">
+        <div className="flex items-center justify-center flex-wrap gap-5">
+          <h4 className="font-bold md:text-[64px] text-[44px] text-white flex items-center text-center">
             {isGameCompleted ? (
               <>
                 You got a certificate
@@ -70,7 +70,7 @@ const Footer = () => {
           {!isGameCompleted && (
             <div
               onClick={handleFinalMintClick}
-              className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] cursor-pointer"
+              className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] cursor-pointer ml-4"
             >
               <img
                 src="/certificate.png"
