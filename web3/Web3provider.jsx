@@ -154,11 +154,17 @@ export const Web3Provider = ({ children }) => {
 
   const requestAccount = async () => {
     console.log('Requesting account...');
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = 'https://metamask.app.link/dapp/solidity-quest.vercel.app/';
+      return;
+    }
     if (window.ethereum) {
       const chainId = parseInt(window.ethereum.chainId, 16);
       setChain(chainId);
       console.log(chainId);
 
+      // Switch chain if it's not one of the desired chains
       if (chainId !== 80002 && chainId !== 1440002 && chainId !== 11155111) {
         await switchChain();
       }
@@ -171,6 +177,8 @@ export const Web3Provider = ({ children }) => {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      console.log('Ethereum provider not found');
     }
   };
 
