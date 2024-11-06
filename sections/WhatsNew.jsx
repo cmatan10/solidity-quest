@@ -20,6 +20,7 @@ const WhatsNew = () => (
         variants={fadeIn('right', 'tween', 0.2, 1)}
         className="flex-[0.95] flex justify-center flex-col"
       >
+
         <div className="mb-[10px] -mt-[50px]">
           <TitleText title={<>Become a Solidity expert</>} />
         </div>
