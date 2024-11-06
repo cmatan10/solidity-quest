@@ -4,7 +4,7 @@
 /* eslint-disable no-use-before-define */
 import { createContext, useState, useEffect } from 'react';
 import Web3 from 'web3';
-import WalletConnectProvider from '@walletconnect/web3-provider';
+import { Web3Modal } from '@web3modal/react';
 import gameABI from '../interfaces/GameFactory.json';
 import nftABI from '../interfaces/NFTbadge';
 
@@ -17,7 +17,6 @@ export const Web3Provider = ({ children }) => {
   const [nftContract, setNftContract] = useState(null);
   const [web3, setWeb3] = useState(null);
   const [tokenIDs, setTokenIDs] = useState([]);
-  let walletConnectProvider;
 
   const contractAddresses = {
     1440002: {
@@ -104,28 +103,18 @@ export const Web3Provider = ({ children }) => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-      if (!walletConnectProvider || !walletConnectProvider.connected) {
-        walletConnectProvider = new WalletConnectProvider({
-          rpc: {
-            80002: 'https://rpc-mumbai.maticvigil.com',
-            1440002: 'https://rpc-for-chain-1440002',
-            11155111: 'https://zksync-sepolia.g.alchemy.com/v2/FdP4lSDr9rWv0rpT9qflxHA7KyBDoEDZ',
-          },
-          qrcodeModalOptions: {
-            mobileLinks: ['metamask'],
-          },
-        });
-        await walletConnectProvider.enable();
+      // Open Web3Modal for mobile
+      const modal = new Web3Modal({ projectId: '9ea74fc0-0f80-4bc4-b98f-d6d4e256d34f' });
+      const provider = await modal.openModal();
 
-        walletConnectProvider.on('disconnect', () => {
-          console.log('WalletConnect session disconnected');
-        });
-      }
+      const mobileWeb3 = new Web3(provider);
+      setWeb3(mobileWeb3);
 
-      const mobileWeb3 = new Web3(walletConnectProvider);
       try {
         const accounts = await mobileWeb3.eth.getAccounts();
         setWalletAddress(accounts[0]);
+        const chainId = await mobileWeb3.eth.getChainId();
+        setChain(chainId);
       } catch (error) {
         console.log('Error connecting account:', error);
       }
