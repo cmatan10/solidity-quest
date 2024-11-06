@@ -154,11 +154,17 @@ export const Web3Provider = ({ children }) => {
 
   const requestAccount = async () => {
     console.log('Requesting account...');
+
+    // Check if in MetaMask browser or mobile
+    const isMetaMaskBrowser = window.ethereum && window.ethereum.isMetaMask;
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
+
+    if (isMobile && !isMetaMaskBrowser) {
+      // Redirect to MetaMask deeplink if not already in MetaMask browser
       window.location.href = 'https://metamask.app.link/dapp/solidity-quest.vercel.app/';
       return;
     }
+
     if (window.ethereum) {
       const chainId = parseInt(window.ethereum.chainId, 16);
       setChain(chainId);
