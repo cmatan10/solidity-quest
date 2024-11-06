@@ -13,9 +13,9 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@metamask/sdk-react": "^0.30.0",
     "@mui/icons-material": "^6.1.6",
     "@reduxjs/toolkit": "^2.3.0",
+    "@walletconnect/web3-provider": "^1.8.0",
     "eslint-config-next": "13.0.3",
     "framer-motion": "^7.6.7",
     "next": "^13.4.12",
@@ -30,7 +30,7 @@
     "reactstrap": "^9.2.3",
     "redux": "^5.0.1",
     "slick-carousel": "^1.8.1",
-    "web3": "^4.13.0"
+    "web3": "^4.14.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

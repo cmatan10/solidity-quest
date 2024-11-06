@@ -4,6 +4,7 @@
 /* eslint-disable no-use-before-define */
 import { createContext, useState, useEffect } from 'react';
 import Web3 from 'web3';
+import WalletConnectProvider from '@walletconnect/web3-provider';
 import gameABI from '../interfaces/GameFactory.json';
 import nftABI from '../interfaces/NFTbadge';
 
@@ -155,30 +156,43 @@ export const Web3Provider = ({ children }) => {
   const requestAccount = async () => {
     console.log('Requesting account...');
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    let provider;
+
     if (isMobile) {
-      window.location.href = 'https://metamask.app.link/dapp/solidity-quest.vercel.app/';
-      return;
-    }
-    if (window.ethereum) {
+      // Use WalletConnect provider for mobile
+      provider = new WalletConnectProvider({
+        rpc: {
+          11155111: 'https://zksync-sepolia.g.alchemy.com/v2/FdP4lSDr9rWv0rpT9qflxHA7KyBDoEDZ', // Sepolia testnet
+        },
+      });
+
+      // Enable WalletConnect provider
+      await provider.enable();
+    } else if (window.ethereum) {
+      // Use MetaMask or any injected provider on desktop
+      provider = window.ethereum;
+
       const chainId = parseInt(window.ethereum.chainId, 16);
       setChain(chainId);
       console.log(chainId);
 
-      // Switch chain if it's not one of the desired chains
+      // Switch chain if not on a desired network
       if (chainId !== 80002 && chainId !== 1440002 && chainId !== 11155111) {
         await switchChain();
       }
-
-      try {
-        const accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        setWalletAddress(accounts[0]);
-      } catch (error) {
-        console.log(error);
-      }
     } else {
-      console.log('Ethereum provider not found');
+      console.log('No Ethereum provider found');
+      return;
+    }
+
+    const web3 = new Web3(provider);
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      setWalletAddress(accounts[0]);
+    } catch (error) {
+      console.log('Error connecting account:', error);
     }
   };
 
