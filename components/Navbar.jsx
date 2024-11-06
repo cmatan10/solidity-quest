@@ -36,6 +36,7 @@ const Navbar = () => {
         whileInView="show"
         className={`${styles.xPaddings} py-8 relative z-10`}
       >
+        <div className="absolute inset-0 gradient-01 z-[-100]" />
         <div className={`${styles.innerWidth} mx-auto flex justify-between gap-8`}>
           <Link href="/" passHref>
             <h2 className="font-extrabold text-[24px] leading-[30.24px] text-white">

@@ -9,6 +9,7 @@ import { staggerContainer, fadeIn, planetVariants } from '../utils/motion';
 
 const GetStarted = () => (
   <section className={`${styles.paddings} relative z-10`}>
+    <div className="absolute inset-0 gradient-03" />
     <motion.div
       variants={staggerContainer}
       initial="hidden"
@@ -33,6 +34,7 @@ const GetStarted = () => (
         <TypingText title="| How To Play The Game" />
         <TitleText title={<>Get started</>} />
         <div className="mt-[31px] flex flex-col max-w-[370px] gap-[24px]">
+
           {startingFeatures.map((feature, index) => (
             <StartSteps
               key={feature}

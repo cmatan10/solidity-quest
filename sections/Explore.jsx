@@ -48,6 +48,8 @@ const Explore = () => {
 
   return (
     <section className={`${styles.paddings}`} id="explore">
+      <div className="absolute w-[50%] inset-0 gradient-02" />
+
       <motion.div
         variants={staggerContainer}
         initial="hidden"

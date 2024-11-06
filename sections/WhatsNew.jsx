@@ -23,7 +23,7 @@ const WhatsNew = () => (
         <div className="mb-[10px] -mt-[50px]">
           <TitleText title={<>Become a Solidity expert</>} />
         </div>
-        <div className="mt-[10px] flex flex-wrap justify-between gap-[24px]">
+        <div className="mt-[10px] flex flex-wrap justify-between gap-[24px] ">
           {newFeatures.map((feature) => (
             <NewFeatures key={feature.title} {...feature} />
           ))}
