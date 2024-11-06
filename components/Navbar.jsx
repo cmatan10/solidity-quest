@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { MetaMaskProvider } from '@metamask/sdk-react';
 import { Web3Context } from '../web3/Web3provider';
 import styles from '../styles';
 import { navVariants } from '../utils/motion';
@@ -12,6 +13,15 @@ const Navbar = () => {
   const { walletAddress, requestAccount } = useContext(Web3Context);
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const sdkOptions = {
+    logging: { developerMode: false },
+    checkInstallationImmediately: false,
+    dappMetadata: {
+      name: 'SolidityQuest',
+      url: 'https://solidity-quest.vercel.app/',
+    },
+  };
 
   const handleMenuClick = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -43,13 +53,17 @@ const Navbar = () => {
             </h2>
           </Link>
           <div className="flex items-center">
-            <button
-              onClick={requestAccount}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
-              disabled={!requestAccount}
-            >
-              {walletAddress ? 'Connected' : 'Connect Wallet'}
-            </button>
+            <MetaMaskProvider debug={false} sdkOptions={sdkOptions}>
+
+              <button
+                onClick={requestAccount}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                disabled={!requestAccount}
+              >
+                {walletAddress ? 'Connected' : 'Connect Wallet'}
+              </button>
+            </MetaMaskProvider>
+
             <img
               src="/menu.svg"
               alt="menu"
